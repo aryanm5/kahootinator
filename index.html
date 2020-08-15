@@ -92,6 +92,19 @@
             xhttp.send();
         }
     }
+
+    function init() {
+        var url = `http://kahootinator.aryan_m.repl.co/`;
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    console.log('REPL woken up');
+                }
+            }
+            xhttp.open("GET", url, true); // true for asynchronous 
+            xhttp.send();
+    }
+    init();
 </script>
 
 </html>
