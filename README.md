@@ -1,4 +1,5 @@
 # KAHOOTINAT😈R
+Launch at [https://mittaldev.com/kahootinator/](https://mittaldev.com/kahootinator/)
 
 ## What does it do?
 
