@@ -33,8 +33,9 @@
             Game PIN:<br>
             <input class='input' type='number' id='pin' placeholder='000000'><br>
             <span class='error' id='pinError'></span><br>
-            Bot Name (will join as <em>name</em>-1, <em>name</em>-2, etc.):<br>
-            <input class='input' type='text' id='name' placeholder='KAHOOTINATOR' value='KAHOOTINATOR'><br>
+            Bot Names, separated by commas:<br>
+            (Each bot will choose a random one of these names)<br>
+            <input class='input' type='text' id='name' placeholder='Joe,Bob,Billy' value='Joe,Bob,Billy'><br>
             <span class='error' id='nameError'></span><br>
 
             <label for="ans">Bot will answer: </label><br>
@@ -63,9 +64,9 @@
         } else {
             document.getElementById('pinError').innerHTML = '';
         }
-        var name = document.getElementById('name').value;
+        var name = document.getElementById('name').value.replace(/\,\s/g, ',');
         if (name.length < 1) {
-            document.getElementById('nameError').innerHTML = 'Error: Invalid Kahoot Name<br>';
+            document.getElementById('nameError').innerHTML = 'Error: Enter at least 1 name<br>';
             valid = false;
         } else {
             document.getElementById('nameError').innerHTML = '';
@@ -80,7 +81,7 @@
         if (valid) {
             document.getElementById('button').innerHTML = ' Joining... ';
             document.getElementById('success').innerHTML = '';
-            var url = `http://kahootinator.aryan_m.repl.co/?uid=${Date.now()}&pin=${pin}&name=${encodeURIComponent(name)}&ans=${document.getElementById('ans').value}&numBots=${num}`;
+            var url = `http://kahootinator.aryan_m.repl.co/?uid=${Date.now()}&pin=${pin}&names=${encodeURIComponent(name)}&ans=${document.getElementById('ans').value}&numBots=${num}`;
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (xhttp.readyState == 4 && xhttp.status == 200) {
