@@ -1,0 +1,79 @@
+.container {
+    padding: 30px;
+    background-color: transparent;
+}
+
+.background {
+    z-index: -1;
+    opacity: 0.3;
+    background-image: url("./icon.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 80% 50%;
+    background-size: 50% auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.title {
+    font-size: 2.5em;
+    font-weight: bold;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+
+@media screen and (orientation:portrait) {
+    .title {
+        font-size: 8vw;
+    }
+}
+
+.explanation {
+    font-family: 'Verdana'
+}
+
+.form {
+    font-family: 'Verdana'
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+.success {
+    color: green;
+    font-weight: bold;
+}
+
+.input {
+    font-size: 1em;
+    padding: 10px;
+}
+
+#numBots {
+    width: 4em;
+}
+
+.button {
+    font-size: 1.4em;
+    font-family: 'Arial Black';
+    padding: 12px;
+    cursor: pointer;
+    background-color: purple;
+    color: white;
+    border: 1px solid #ccc;
+    box-shadow: -0.5px -0.5px 2px 2px gray;
+}
+
+.button:active {
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+    box-shadow: inset 0px 0px 5px #c1c1c1;
+    outline: none;
+}
+
+.button:focus {
+    outline: none;
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang='en-US'>
+
+<head>
+    <title>Kahootinator >:D</title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+    <meta name="author" content="Aryan M">
+    <meta name="description" content="Kahootinator >:D">
+    <meta name="keywords" content="Aryan M Games, AryanM, Scheduler, AryanM Scheduler">
+    <meta name="language" content="English">
+    <script>
+        if(location.href.startsWith('https://')) {
+            location.replace(location.href.replace('https://', 'http://'));
+        }
+    </script>
+    <link rel="icon" href="icon.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class='background'></div>
+    <div class='container'>
+        <div class='title'>
+            KAHOOTINAT&#128520;R
+        </div>
+        <div class='explanation'>
+            Deploy hundreds of kahootinator bots to infiltrate and take over any public Kahoot game!<br>
+            Use wisely... Kahootinator is not responsible for any consequences from use of this tool.
+        </div><br><br>
+        <div class='form'>
+            Game PIN:<br>
+            <input class='input' type='number' id='pin' placeholder='000000'><br>
+            <span class='error' id='pinError'></span><br>
+            Bot Name (will join as <em>name</em>-1, <em>name</em>-2, etc.):<br>
+            <input class='input' type='text' id='name' placeholder='KAHOOTINATOR' value='KAHOOTINATOR'><br>
+            <span class='error' id='nameError'></span><br>
+
+            <label for="ans">Bot will answer: </label><br>
+            <select class="input" name="ans" id="ans">
+                <option value="random">Randomly</option>
+                <option value="never">Never</option>
+                <option value="0">First (Red Triangle)</option>
+                <option value="1">Second (Blue Diamond)</option>
+            </select><br><br>
+            Number of bots:<br>
+            <input class='input' type='number' id='num' placeholder='100' value='100'><br>
+            <span class='error' id='numError'></span><br>
+            <button class='button' onclick="go()" id="button">KAHOOTINATE!</button><br>
+            <span id='success' class='success'></span>
+        </div>
+    </div>
+
+</body>
+<script>
+    function go() {
+        var valid = true;
+        var pin = document.getElementById('pin').value.toString();
+        if (pin.length <= 2 || pin.length > 10) {
+            document.getElementById('pinError').innerHTML = 'Error: Invalid Game PIN<br>';
+            valid = false;
+        } else {
+            document.getElementById('pinError').innerHTML = '';
+        }
+        var name = document.getElementById('name').value;
+        if (name.length < 1) {
+            document.getElementById('nameError').innerHTML = 'Error: Invalid Kahoot Name<br>';
+            valid = false;
+        } else {
+            document.getElementById('nameError').innerHTML = '';
+        }
+        var num = Number(document.getElementById('num').value);
+        if(num < 1 || num > 1000) {
+            document.getElementById('numError').innerHTML = 'Error: Must be between 1-1000<br>';
+            valid = false;
+        } else {
+            document.getElementById('numError').innerHTML = '';
+        }
+        if (valid) {
+            document.getElementById('button').innerHTML = ' Joining... ';
+            document.getElementById('success').innerHTML = '';
+            var url = `http://kahootinator.aryan_m.repl.co/?uid=${Date.now()}&pin=${pin}&name=${encodeURIComponent(name)}&ans=${document.getElementById('ans').value}&numBots=${num}`;
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    document.getElementById('button').innerHTML = 'KAHOOTINATE!';
+                    document.getElementById('success').innerHTML = 'Bots have joined!<br>If it didn\'t work, make sure the PIN you entered was correct.<br>Otherwise, try lowering the number of bots and try again.';
+                }
+            }
+            xhttp.open("GET", url, true); // true for asynchronous 
+            xhttp.send();
+        }
+    }
+</script>
+
+</html>
