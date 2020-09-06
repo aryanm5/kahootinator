@@ -84,7 +84,8 @@
             var url = `http://kahootinator.aryan_m.repl.co/?uid=${Date.now()}&pin=${pin}&names=${encodeURIComponent(name)}&ans=${document.getElementById('ans').value}&numBots=${num}`;
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
-                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log('Response: ' + this.responseText);
                     document.getElementById('button').innerHTML = 'KAHOOTINATE!';
                     document.getElementById('success').innerHTML = 'Bots have joined!<br>If it didn\'t work, make sure the PIN you entered was correct.<br>Otherwise, try lowering the number of bots and try again.';
                 }
